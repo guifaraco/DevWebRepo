@@ -1,21 +1,13 @@
 # project1
 
 Meu repositório contem acesso à uma API externa [Link da API](https://www.themoviedb.org/).
-É necessário criar uma conta, pode ser com o google, quando logar devem ir nas configurações do perfil, em seguida clicar em API e clicar no botão create e em seguida developer, preencha as informações pedidas e gere a chave, voce precisará do token que será exibido na tela, copie ele e crie um arquivo .env dentro da src do projeto contendo o seguinte código:
+É necessário criar uma conta, quando logar devem ir nas configurações do perfil, em seguida clicar em API e clicar no botão create e em seguida developer, preencha as informações pedidas e gere a chave, voce precisará do token que será exibido na tela, copie ele e crie um arquivo .env dentro da src do projeto contendo o seguinte código:
 
 Dentro do arquivo .env:
 ```
 VITE_API_TOKEN="seu token aqui"
 ```
 pronto, seu projeto está pronto pra uso.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
 
 ## Project Setup
 
