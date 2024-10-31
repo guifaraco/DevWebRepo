@@ -35,7 +35,7 @@ const searchMovie = async () => {
   const url = `https://api.themoviedb.org/3/search/movie?query=${query.value}&include_adult=true&language=pt-BR&page=1`;
   const response = await fetch(url, options);
   const data = await response.json();
-  
+  console.log(data);
   if (data.results.length > 0) {
     movie.value = data.results[0];
     genres.value = await findMovieGenres(movie.value);
