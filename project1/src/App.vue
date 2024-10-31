@@ -1,23 +1,31 @@
 <script setup>
 import { computed, ref } from "vue";
 import Header from "./components/PagesHeader.vue";
-import Modal from './components/Modal.vue';
+import Modal from "./components/Modal.vue";
 import MovieCard from "./components/MovieCard.vue";
-
 
 const movies = ref([]);
 const modalVisible = ref(false);
-
 
 const showModal = () => {
   modalVisible.value = true;
 };
 
 const addMovie = (movie) => {
-  movies.value.push(movie);
+  const exists = movies.value.some(m => m.id === movie.id);
+
+  if (!exists){
+    movies.value.push(movie);
+  }
 };
 
-const showModalComputed = computed(() => modalVisible.value)
+const removeMovie = (movie) => {
+  movies.value = movies.value.filter((m) => m.id !== movie.id);
+};
+
+const showModalComputed = computed(() => modalVisible.value);
+
+
 </script>
 
 <template>
@@ -34,8 +42,16 @@ const showModalComputed = computed(() => modalVisible.value)
             Adicionar Filme
           </button>
         </div>
-        <div v-if="movies.length > 0" class="grid grid-cols-3 gap-4 overflow-y-auto">
-          <MovieCard v-for="movie in movies" :key="movie.id" :movie="movie" />
+        <div
+          v-if="movies.length > 0"
+          class="grid grid-cols-3 gap-4 overflow-y-auto"
+        >
+          <MovieCard
+            v-for="movie in movies"
+            :key="movie.id"
+            :movie="movie"
+            @remove="removeMovie"
+          />
         </div>
         <p v-else class="text-white text-5xl text-center">
           Sua lista de filmes está vazia.
@@ -45,6 +61,10 @@ const showModalComputed = computed(() => modalVisible.value)
         </p>
       </div>
     </main>
-    <Modal v-if="showModalComputed" @close="modalVisible = false" :addMovie="addMovie"/>
+    <Modal
+      v-if="showModalComputed"
+      @close="modalVisible = false"
+      :addMovie="addMovie"
+    />
   </div>
 </template>
